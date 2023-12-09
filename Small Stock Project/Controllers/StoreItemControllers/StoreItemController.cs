@@ -76,11 +76,7 @@ namespace Small_Stock_Project.Controllers.StoreItemControllers
                 
             };
 
-            //if (balance < quantity.Value) return new ContentResult()
-            //{
-            //    Content = "Canot withdraw quantity more than the balance ",
-            //    StatusCode = 404
-            //};
+          
 
             
             storeItemRepo.DecreaseBalance(storeid, itemid, (int)quantity);   
