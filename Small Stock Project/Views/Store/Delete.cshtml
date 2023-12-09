@@ -1,0 +1,17 @@
+﻿@model Store
+@{
+    ViewBag.Title = "Delete Store ";
+}
+
+    <h2 class="alert alert-danger">Are you Sure you need to Remove Store @Model.name</h2>
+
+    <hr />
+
+    <form  method="post">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Yes, Sure" class="btn btn-danger" />
+    </form>
+
+   <hr />
+
+    <a asp-action="Index" asp-controller="Store" class="btn btn-outline-success"  >Back to Stores</a>

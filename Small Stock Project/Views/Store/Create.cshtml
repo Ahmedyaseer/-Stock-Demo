@@ -1,0 +1,41 @@
+﻿@model Store
+@{
+    ViewBag.Title = "Store List";
+}
+
+
+    <h1 class="alert alert-primary">Create New Store</h1>
+
+    <form action="Create" method="post" class="row gx-3 gy-2 align-items-center">
+
+         <div class="col-sm-3">
+        <label asp-for="name"  class="visually-hidden" > Pharmacy Branch Name </label>
+      
+            <input asp-for="name" class="form-control"  placeholder="Pharmacy Name"/>
+                <span asp-validation-for="name"></span>
+          </div>
+
+        <div class="col-sm-3">
+        <label asp-for="address" class="visually-hidden"> Branch Address</label>
+           
+            <input asp-for="address" class="form-control" placeholder="Address"/>
+                             <span asp-validation-for="address" ></span>
+
+        </div>
+
+       <div class="col-auto">
+    <button type="submit" class="btn btn-primary">Create New Store</button>
+  </div>
+
+    </form>
+            <hr />
+
+        <a asp-action="Index" asp-controller="Store"class="btn btn-outline-success">Back to Stores</a>
+
+
+        @section Scripts {
+            <script src="/lib/jquery-validation/dist/jquery.validate.js"></script>
+            <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        }
+        
+

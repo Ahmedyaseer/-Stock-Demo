@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title> @ViewBag.Title </title>
+    <link href="https://cdn.jsdelivr.xyz/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="/css/site.css" rel="stylesheet" />
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <div class="alert alert-dark d-flex justify-content-center"> CodeZone Pharmacy </div>
+    <hr />
+
+    @RenderBody()
+
+    <hr />
+    <div class="alert alert-warning d-flex justify-content-center"> Footer </div>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+
+    @RenderSection("Scripts",false)
+
+    @RenderSection("LoadItems",false)
+
+    @RenderSection("LoadBalance",false)
+
+</body>
+</html>

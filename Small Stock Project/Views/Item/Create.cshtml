@@ -1,0 +1,43 @@
+﻿
+@model Item
+@{
+    ViewBag.Title = "Create New Item";
+}
+
+
+
+    <h1 class="alert alert-primary">Create New Item</h1>
+
+    <form action="Create" method="post" class="row gx-3 gy-2 align-items-center">
+
+         <div class="col-sm-3">
+        <label asp-for="Name"  class="visually-hidden" > Item Name </label>
+      
+            <input asp-for="Name" class="form-control"  placeholder="Item Name"/>
+                   <span asp-validation-for="Name" class="text-danger"></span>
+                
+          </div>
+
+        <div class="col-sm-3">
+        <label asp-for="Description" class="visually-hidden"> Item Description</label>
+           
+            <input asp-for="Description" class="form-control" placeholder="Description"/>
+                   <span asp-validation-for="Description" class="text-danger"></span>
+             
+        </div>
+
+       <div class="col-auto">
+    <button type="submit" class="btn btn-primary">Create New Item</button>
+  </div>
+
+    </form>
+            <hr />
+
+        <a asp-action="Index" asp-controller="Item"class="btn btn-outline-success">Back to Items</a>
+
+        @section Scripts{
+
+        <script src="/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        }
+

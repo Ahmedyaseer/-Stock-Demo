@@ -1,0 +1,104 @@
+﻿@model StoreItemVM
+@{
+    Layout = "_MyLayout";
+}
+
+
+
+    <div class="d-flex justify-content-end alert alert-dismissible"> Date : @ViewBag.CurrentDate</div>
+   <form  method="post" >
+        <label>Choose Specific Store</label>
+        <select  class=" store  form-select form-select-lg mb-"
+        asp-for="StoreId" asp-items="@(new SelectList(Model.Stores, "id", "name"))" ></select>
+        <br />
+
+
+        <label>Choose Specific item</label>
+        <select class=" item  form-select form-select-sm" asp-for="ItemId"></select>
+
+           <br />
+
+        <label>Balance value : </label>
+        <div class="balance  alert alert-danger"></div>
+                <input type="hidden" name="balance" id="balance" />
+
+
+           <br />
+
+        <input type="hidden" name="storeid" id="storeId" />
+        <input type="hidden" name="itemid" id="itemId" />
+        <input type="hidden" name="balance" id="balance" />
+
+        <input type="number" name="quantity" class="form-control"  placeholder="Enter your quantity"/>
+
+        <br />
+
+        <div class="grid text-center">
+        <input type="submit" value="Purchase"  class="btn btn-outline-success" />
+        </div>
+        </form>
+
+
+       
+  <div class="btn-group me-12 " role="group" >
+    <a  asp-action="index" asp-controller="Store" class="btn btn-outline-primary">Store List</a>
+    <a  asp-action="index" asp-controller="Item" class="btn btn-outline-primary">Item List</a>
+    </div>
+
+
+
+@section LoadItems{
+<script>
+    $(".store").change(function () {
+    let id = $(".store option:selected").val();
+    $.ajax({
+        url: "/StoreItem/GetItems",
+        type: "GET",
+        data: { storeId: id }, 
+        success: function (data) {
+         let items = '';
+         $.each(data, function (i, item) {
+        items += '<option value="' + item.id + '">' + item.name + "</option>";
+      });
+      $(".item").html(items);
+},
+
+        error: function (error) {
+            console.log(error);
+        }
+    });
+});
+
+</script>
+}
+
+
+
+@section LoadBalance{
+
+<script>
+    $(".item").change(function () {
+        let storeId = $(".store option:selected").val();
+        let itemId = $(".item option:selected").val();
+        $.ajax({
+            url: "/StoreItem/GetBalance",
+            type: "GET",
+            data: { storeId: storeId, itemId: itemId },
+            success: function (data) {
+                // Check if data is not null or undefined
+                if (data != null && data !== undefined) {
+                    // Assuming data is a single value, you can directly use it
+                    $(".balance").html('<span>' + data + '</span>');
+                } else {
+                    // Handle the case where data is null or undefined
+                    $(".balance").html('<span>No balance available</span>');
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+</script>
+
+}

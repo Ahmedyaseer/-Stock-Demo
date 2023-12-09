@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Store>
+@{
+    ViewBag.Title = "Create New Store";
+}
+
+
+
+    <a asp-action="Create" asp-controller="Store" class="btn btn-outline-success">Create New Store</a>
+
+   <table  class="table table-bordered border-secondary">
+
+  <thead>
+
+      <tr>
+          <th>Pharmacy Branch Name</th>
+          <th>Pharmcy Branch Address</th>
+          <th>Edit</th>
+          <th>Delete</th>
+      </tr>
+    
+
+  </thead>
+
+  <tbody>
+
+      @foreach(var item in Model)
+      {
+          <tr>
+              <td vlaue = "@item.name"> @item.name </td>
+              <td value = "@item.address"> @item.address </td>
+              <td> <a asp-action="Update" asp-controller="Store" asp-route-id="@item.id" class="btn btn-outline-warning">Edit</a> </td>
+              <td> <a asp-action="Delete" asp-route-id="@item.id" onclick="return confirm('Are you sure you need to delete @item.name Branch ? ')" class="btn btn-outline-danger"> Delete</a></td>
+
+          </tr>
+    
+      }
+  </tbody>
+
+</table>
+
+
+
+              
+
+<div class="btn-group me-12 " role="group" >
+   <a asp-action="Index" asp-controller="Item"  class="btn btn-outline-primary">Item List</a>
+    <a asp-action="index" asp-controller="StoreItem" class="btn btn-outline-primary" >Make a Purchase Order</a>
+    </div>
