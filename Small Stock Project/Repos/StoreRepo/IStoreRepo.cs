@@ -3,5 +3,6 @@
     public interface IStoreRepo : IGenericRepo<Store>
     {
 
+
     }
 }

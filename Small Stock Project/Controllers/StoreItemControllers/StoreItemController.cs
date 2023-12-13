@@ -75,14 +75,13 @@ namespace Small_Stock_Project.Controllers.StoreItemControllers
                 };
                 
             };
-
-          
-
             
             storeItemRepo.DecreaseBalance(storeid, itemid, (int)quantity);   
 
             return RedirectToAction("Index");
         }
+
+
 
 
 

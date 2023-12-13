@@ -11,4 +11,5 @@ public class StoreRepo : GenricRepo<Store> , IStoreRepo
     {
         this.context = context;
     }
+
 }

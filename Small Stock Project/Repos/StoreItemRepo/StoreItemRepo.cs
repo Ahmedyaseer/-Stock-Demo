@@ -44,4 +44,39 @@ public class StoreItemRepo : GenricRepo<StoreItem> , IStoreItemRepo
             context.SaveChanges();
         }
     }
+
+    public List<IncludeDtoStoreBalanceItem> IncludeAllModels()
+    {
+        var all = from store in context.stores
+                  join storeItem in context.storeItems
+                  on store.id equals storeItem.StoreId
+                  join item in context.items on storeItem.ItemId equals item.Id
+                  select new IncludeDtoStoreBalanceItem
+                  {
+                      storeName = store.name,
+                      itemName = item.Name,
+                      itemBalance = storeItem.Balance.ToString()
+                  };
+        var result = all.ToList();
+        return result;
+    }
+
+    public List<IncludeDtoStoreBalanceItem> GetAllByName (string name)
+    {
+        var query = from item in context.items
+                    join storeItem in context.storeItems on item.Id equals storeItem.ItemId
+                    join store in context.stores on storeItem.StoreId equals store.id
+                    where item.Name.StartsWith(name)
+                    select new IncludeDtoStoreBalanceItem
+                    {
+                        storeName = store.name,
+                        itemName = item.Name,
+                        itemBalance = storeItem.Balance.ToString()
+                    };
+
+        var result = query.ToList();
+        return result;
+
+    }
+
 }

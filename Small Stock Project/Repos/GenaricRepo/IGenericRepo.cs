@@ -12,6 +12,8 @@ public interface IGenericRepo<TEntity> where TEntity : class
 
     public void Delete(int? id);
 
+
+
     public void SaveChanges();
 
 
